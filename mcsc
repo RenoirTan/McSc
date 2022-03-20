@@ -1,0 +1,30 @@
+#!/usr/bin/env sh
+
+run_command() {
+    echo "==> $@"
+    "$@"
+}
+
+if ! command -v python3 >/dev/null; then
+    echo "python3 not found!"
+    exit 1
+fi
+
+search_mcsc_py_at() {
+    if [ -f $1 ]; then
+        _mcsc_py_loc=$1
+    fi
+}
+
+run_command search_mcsc_py_at "/lib/mcsc.py"
+run_command search_mcsc_py_at "/local/lib/mcsc.py"
+run_command search_mcsc_py_at "/usr/lib/mcsc.py"
+run_command search_mcsc_py_at "/usr/local/lib/mcsc.py"
+run_command search_mcsc_py_at "$HOME/.local/lib/mcsc.py"
+if [ $_mcsc_py_loc == "" ]; then
+    echo "mcsc.py not found!"
+    exit 1
+fi
+echo "found mcsc.py at '$_mcsc_py_loc'"
+
+run_command python3 $_mcsc_py_loc --config "$MCSC_CONFIG_PATH"

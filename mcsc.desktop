@@ -1,0 +1,10 @@
+#!/usr/bin/env xdg-open
+[Desktop Entry]
+Name=McSc
+GenericName=McSc
+Comment=Minecraft Profile Switcher
+Type=Application
+Exec=/home/<YOUR USERNAME HERE>/.local/bin/mcsc
+Icon=minecraft
+Terminal=true
+Categories=Game;Utility;Settings;
